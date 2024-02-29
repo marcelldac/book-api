@@ -7,3 +7,14 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model book{
+  id String @id @default(uuid())
+  name String
+  synopsis String
+  value Float
+  genders String
+
+  createdAt DateTime @default(now())
+  upDatedAt DateTime @updatedAt
+}

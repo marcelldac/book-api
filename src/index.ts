@@ -48,6 +48,18 @@ app.put("/books/:id", async (request, response) => {
   return response.status(200).json(updateBook);
 })
 
+app.delete("/books/:id", async (request, response) => {
+  const { id } = request.params;
+
+  await prismaClient.book.delete({
+    where: { id }
+  });
+
+  //204 => no content (sem conteúdo)
+  return response.sendStatus(204);
+}) 
+
+
 
 app.listen(PORT, function () {
   console.log(`Servidor Online! Porta: ${PORT}`);

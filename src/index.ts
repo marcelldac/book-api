@@ -9,5 +9,5 @@ app.use(cors());
 app.use(express.json());
 
 app.listen(PORT, function () {
-  console.log("Servidor Online!");
+  console.log(`Servidor Online! Porta: ${PORT}`);
 });

@@ -21,6 +21,21 @@ app.get("/books", async (request, response) => {
   return response.status(200).json(books);
 })
 
+//Create Books
+app.post("/books", async (request, response) => {
+  const { name, synopsis, value, genders } = request.body;
+  const newBook = await prismaClient.book.create({
+    data:{
+      name,
+      synopsis,
+      value,
+      genders
+    }
+  });
+  //201 = created
+  return response.status(201).json(newBook);
+})
+
 
 app.listen(PORT, function () {
   console.log(`Servidor Online! Porta: ${PORT}`);

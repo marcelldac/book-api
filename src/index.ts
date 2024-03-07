@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import prismaClient from "../prisma/prisma-client";
 
 const app = express();
 const PORT = 3000;

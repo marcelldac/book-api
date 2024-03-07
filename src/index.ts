@@ -36,6 +36,18 @@ app.post("/books", async (request, response) => {
   return response.status(201).json(newBook);
 })
 
+app.put("/books/:id", async (request, response) => {
+  const { id } = request.params;
+  const { name, synopsis, value, genders } = request.body;
+
+  const updateBook = await prismaClient.book.update({
+    data: { name, synopsis, value, genders },
+    where: { id }
+  });
+
+  return response.status(200).json(updateBook);
+})
+
 
 app.listen(PORT, function () {
   console.log(`Servidor Online! Porta: ${PORT}`);

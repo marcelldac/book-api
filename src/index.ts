@@ -15,6 +15,12 @@ app.use(express.json());
 
 // delete => 204 (no content)
 
+//Read Books
+app.get("/books", async (request, response) => {
+  const books = await prismaClient.book.findMany();
+  return response.status(200).json(books);
+})
+
 
 app.listen(PORT, function () {
   console.log(`Servidor Online! Porta: ${PORT}`);

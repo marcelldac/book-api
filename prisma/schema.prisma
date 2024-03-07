@@ -10,6 +10,7 @@ datasource db {
 
 model book{
   id String @id @default(uuid())
+  
   name String
   synopsis String
   value Float
@@ -17,4 +18,6 @@ model book{
 
   createdAt DateTime @default(now())
   upDatedAt DateTime @updatedAt
+
+  //Usar TimeStamp (tipo) para fusos diferentes
 }

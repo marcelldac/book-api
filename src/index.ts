@@ -16,49 +16,63 @@ app.use(express.json());
 
 //Read Books
 app.get("/books", async (request, response) => {
-  const books = await prismaClient.book.findMany();
-  return response.status(200).json(books);
-})
+  try {
+    const books = await prismaClient.book.findMany();
+    return response.status(200).json(books);
+  } catch (error) {
+    return response.status(500).json({ mesage: error, error: true });
+  }
+});
 
 //Create Books
 app.post("/books", async (request, response) => {
-  const { name, synopsis, value, genders } = request.body;
-  const newBook = await prismaClient.book.create({
-    data:{
-      name,
-      synopsis,
-      value,
-      genders
-    }
-  });
-  //201 = created
-  return response.status(201).json(newBook);
-})
+  try {
+    const { name, synopsis, value, genders } = request.body;
+    const newBook = await prismaClient.book.create({
+      data: {
+        name,
+        synopsis,
+        value,
+        genders,
+      },
+    });
+    //201 = created
+    return response.status(201).json(newBook);
+  } catch (error) {
+    return response.status(500).json({ mesage: error, error: true });
+  }
+});
 
 app.put("/books/:id", async (request, response) => {
-  const { id } = request.params;
-  const { name, synopsis, value, genders } = request.body;
+  try {
+    const { id } = request.params;
+    const { name, synopsis, value, genders } = request.body;
 
-  const updateBook = await prismaClient.book.update({
-    data: { name, synopsis, value, genders },
-    where: { id }
-  });
+    const updateBook = await prismaClient.book.update({
+      data: { name, synopsis, value, genders },
+      where: { id },
+    });
 
-  return response.status(200).json(updateBook);
-})
+    return response.status(200).json(updateBook);
+  } catch (error) {
+    return response.status(500).json({ mesage: error, error: true });
+  }
+});
 
 app.delete("/books/:id", async (request, response) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
 
-  await prismaClient.book.delete({
-    where: { id }
-  });
+    await prismaClient.book.delete({
+      where: { id },
+    });
 
-  //204 => no content (sem conteúdo)
-  return response.sendStatus(204);
-}) 
-
-
+    //204 => no content (sem conteúdo)
+    return response.sendStatus(204);
+  } catch (error) {
+    return response.status(500).json({ mesage: error, error: true });
+  }
+});
 
 app.listen(PORT, function () {
   console.log(`Servidor Online! Porta: ${PORT}`);

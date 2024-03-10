@@ -8,7 +8,7 @@ routes.get("/books", async (request, response) => {
     const books = await prismaClient.book.findMany();
     return response.status(200).json(books);
   } catch (error) {
-    return response.status(500).json({ mesage: error, error: true });
+    return response.status(500).json({ message: error, error: true });
   }
 });
 
@@ -27,7 +27,7 @@ routes.post("/books", async (request, response) => {
     //201 = created
     return response.status(201).json(newBook);
   } catch (error) {
-    return response.status(500).json({ mesage: error, error: true });
+    return response.status(500).json({ message: error, error: true });
   }
 });
 
@@ -43,7 +43,7 @@ routes.put("/books/:id", async (request, response) => {
 
     return response.status(200).json(updateBook);
   } catch (error) {
-    return response.status(500).json({ mesage: error, error: true });
+    return response.status(500).json({ message: error, error: true });
   }
 });
 
@@ -58,7 +58,7 @@ routes.delete("/books/:id", async (request, response) => {
     //204 => no content (sem conteúdo)
     return response.sendStatus(204);
   } catch (error) {
-    return response.status(500).json({ mesage: error, error: true });
+    return response.status(500).json({ message: error, error: true });
   }
 });
 

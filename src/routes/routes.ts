@@ -1,26 +1,22 @@
 import { Router } from "express";
-import bookService from "../services/book-service";
+import bookController from "../controller/book-controller";
 
 const routes = Router();
 
 routes.get("/books", async (request, response) => {
-  const books = await bookService.read();
-  return response.json(books);
+  await bookController.readBook(request, response);
 });
 
 routes.post("/books", async (request, response) => {
-  const newBook = await bookService.create(request.body);
-  return response.status(201).json(newBook);
+  await bookController.createBook(request, response);
 });
 
 routes.put("/books/:id", async (request, response) => {
-  const updatedBook = await bookService.update(request.body, request.params.id);
-  return response.json(updatedBook);
+  await bookController.updateBook(request, response);
 });
 
 routes.delete("/books/:id", async (request, response) => {
-  const removedBook = await bookService.remove(request.params.id);
-  return response.json(removedBook);
+  await bookController.removeBook(request, response);
 });
 
 export default routes;

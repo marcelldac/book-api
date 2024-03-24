@@ -15,9 +15,9 @@ type Book = {
 export const read = async () => {
   try {
     const books = await prismaClient.book.findMany();
-    return { message: books, error: false }; //200
+    return { message: books, error: false };
   } catch (error) {
-    return { message: error, error: true }; //500
+    return { message: error, error: true };
   }
 };
 export const create = async (book: Book) => {
@@ -25,6 +25,7 @@ export const create = async (book: Book) => {
     const newBook = await prismaClient.book.create({
       data: book,
     });
+
     return { message: newBook, error: false };
   } catch (error) {
     return { message: error, error: true };
@@ -36,7 +37,6 @@ export const update = async (book: Book, id: string) => {
       data: book,
       where: { id },
     });
-
     return { message: updateBook, error: false };
   } catch (error) {
     return { message: error, error: true };

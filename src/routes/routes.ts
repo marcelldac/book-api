@@ -1,7 +1,7 @@
 import express from "express";
 import bookController from "../controller/book-controller";
 
-const routes = express.application;
+const routes = express.Router();
 
 routes.get("/books", (request, response) => {
   bookController.readBook(request, response);

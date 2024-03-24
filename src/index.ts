@@ -10,6 +10,4 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(PORT, function () {
-  console.log(`Servidor Online! Porta: ${PORT}`);
-});
+app.listen(PORT);

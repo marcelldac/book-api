@@ -1,0 +1,20 @@
+GET http://localhost:3000/books
+###
+POST http://localhost:3000/books
+Content-Type: application/json
+
+{
+    "name": "string",
+    "synopsis": "string",
+    "value": 1,
+    "genders": "string"
+}
+###
+PUT http://localhost:3000/books/bf34daa8-ad4b-4ada-9755-c1c44e69c097
+Content-Type: application/json
+
+{
+    "name": "Livro legal"
+}
+###
+DELETE http://localhost:3000/books/bf34daa8-ad4b-4ada-9755-c1c44e69c097

@@ -10,4 +10,6 @@ app.use(express.json());
 
 app.use(routes);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`Running servewr port: ${PORT}`);
+});

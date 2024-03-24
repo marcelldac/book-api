@@ -22,9 +22,8 @@ export const read = async () => {
 };
 export const create = async (book: Book) => {
   try {
-    const newBook = await prismaClient.book.update({
+    const newBook = await prismaClient.book.create({
       data: book,
-      where: { id },
     });
 
     return { message: newBook, error: false };
@@ -34,8 +33,9 @@ export const create = async (book: Book) => {
 };
 export const update = async (book: Book, id: string) => {
   try {
-    const updateBook = await prismaClient.book.create({
+    const updateBook = await prismaClient.book.update({
       data: book,
+      where: { id },
     });
     return { message: updateBook, error: false };
   } catch (error) {
